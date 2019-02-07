@@ -1,4 +1,5 @@
-const getRequest = function(url, onload) {
+const getRequest = function(url, onload) 
+{
     const request = new XMLHttpRequest();
     request.open('GET', url);
     request.responseText = 'json';
