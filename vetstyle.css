@@ -1,10 +1,9 @@
-
 .accordion {
   background-color: #eee;
   color: #444;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
+  width: 33%;
   border: none;
   text-align: left;
   outline: none;
@@ -13,25 +12,31 @@
 }
 
 .active, .accordion:hover {
-  background-color: #ccc;
-}
-
-.accordion:after {
-  content: '\002B';
-  color: #777;
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
-}
-
-.active:after {
-  content: "\2212";
+  background-color: #ccc; 
 }
 
 .panel {
   padding: 0 18px;
+  display: none;
   background-color: white;
-  max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
+}
+
+.bgimg-1 {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('vetpic.jpg');
+  min-height: 100%;
+}
+
+.title {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.borders {
+  border-bottom: 6px solid red;
+  background-color: lightgrey;
 }
