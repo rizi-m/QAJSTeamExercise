@@ -5,7 +5,6 @@ function getSpeciality()
     getRequest(url,(memberList) => 
     {
         memberList = JSON.parse(memberList);
-        let names = {};
         let nameContentToFill = document.getElementsByClassName("vetnames");
         let specLength = nameContentToFill.length;
 
