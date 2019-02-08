@@ -5,85 +5,38 @@ function getSpeciality()
     getRequest(url,(memberList) => 
     {
         memberList = JSON.parse(memberList);
-        console.log(memberList);
-        let first = memberList[0];
-        processFirst(first);
-        memberList = memberList.splice(1);
-        for(let member of memberList)
+        let names = {};
+        let nameContentToFill = document.getElementsByClassName("vetnames");
+        let specLength = nameContentToFill.length;
+
+        for(let count =0 ; count<specLength;count++)
         {
-            createMember(member);
-            console.log("-------------------------------------------");
+            let member = memberList[count];
+            nameContentToFill[count].innerHTML = member["firstName"]+ " " + member["lastName"];
+            let specObject = member["specialties"];
+            specList(specObject,count);
         }
-        //console.log(JSON.parse(data));
     })
 }
 
-function setupUp(key, info)
+function specList(specList,count)
 {
-    
-}
-
-function processFirst(member) 
-{
-    let baseButton = document.getElementById("baseButton");
-    baseButton.innerHTML = member["firstName"] + " " + member["lastName"];;
-    let basePanel = document.getElementById("basePanel");
-    for(key in member)
+    let stringSpecContent = "";
+    let specContentToFill = document.getElementsByClassName("vetspec");
+    if(specList.length)
     {
+        specContentToFill[count].innerHTML =specList["name"];
 
-    }
-}
-
-function createMember(member)
-{
-    let baseButton = document.getElementById("baseButton");
-    let basePanel = document.getElementById("basePanel");
-    let cloneButton = baseButton.cloneNode(true);
-    let clonePanel = basePanel.cloneNode(true);
-
-    cloneButton.innerHTML = member["firstName"] + " " + member["lastName"];
-
-    cloneButton.id = member["firstName"]+member["lastName"]+member["id"];
-    clonePanel.id = "Panel"+member["firstName"]+member["lastName"]+member["id"];
-
-    cloneButton.addEventListener("click",function() 
-    {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight)
+        for(let specItem of specList)
         {
-            panel.style.maxHeight = null;
-        } 
-        else 
-        {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-        } 
-    });
-
-    document.getElementById("buttonPlacement").appendChild(cloneButton);
-    document.getElementById("buttonPlacement").appendChild(clonePanel);
-    for(key in member)
-    {
-        if(key=="specialties")
-        {
-            //console.log("speciality array function call to make it")
-        }
-        else
-        {
-           // console.log(member[key]);
-            if(key == "firstName" || key == "lastName")
-            {
-                
-                let element = createElement('p',member[key],key);
-                document.getElementById(clonePanel.id).appendChild(element);
-                //baseButton.innerHTML = member["firstName"] + " " + member["lastName"];
-            }
+          stringSpecContent += specItem["name"] + ", ";
         }
     }
-   var acc = document.getElementsByClassName("accordion");
-    var i;
-
-
+    else
+    {
+        stringSpecContent = "vet  " 
+    }
+    stringSpecContent=stringSpecContent.substr(0,stringSpecContent.length-2);
+    specContentToFill[count].innerHTML = stringSpecContent;
 }
-
 getSpeciality();
