@@ -1,9 +1,16 @@
 
+
+
 const processFirstOwner = function(owner) {
     const button = document.getElementById("ownerName");
     const panel = document.getElementById("ownerInfomation");
     button.innerHTML = owner.firstName + " " + owner.lastName;
-    let info = `${owner.address}, ${owner.city}, ${owner.telephone}`;
+    let petInfo = "";
+    if (owner.pets.length) {
+        petInfo = owner.pets.map(pet => pet.name).reduce((pet1, pet2) => pet1 + " - " + pet2, "");
+    }
+    let info = `${owner.address}, ${owner.city}, ${owner.telephone}${petInfo} -`;
+    // console.log(owner.pets['name']);
     panel.innerHTML = info;
 }
 
@@ -22,8 +29,15 @@ const processOwner = function(owner) {
         panel.style.display = "block";
         }
     });
+
+    let petInfo = "";
+    if (owner.pets.length) {
+        petInfo = owner.pets.map(pet => pet.name).reduce((pet1, pet2) => pet1 + " - " + pet2, "");
+    }
+    let info = "";
+    // console.log(owner.pets);
     newButton.innerHTML = owner.firstName + " " + owner.lastName;
-    newPanel.innerHTML = `${owner.address}, ${owner.city}, ${owner.telephone}`;
+    newPanel.innerHTML = `${owner.address}, ${owner.city}, ${owner.telephone} Pet(s): ${petInfo} -`;
     newPanel.id = owner.firstName;
 
     accordians.appendChild(newButton);
